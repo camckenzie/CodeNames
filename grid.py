@@ -1,6 +1,7 @@
 from card import Card
 from random import randint
 from word import words
+from prettytable import PrettyTable
 
 print('something')
 class Grid:
@@ -20,8 +21,22 @@ class Grid:
             self.cards.append(new_card)
     
     def display_grid(self):
-        for card in self.cards:
-            print(card.getText())
+        
+        x = PrettyTable()
+        x.field_names = ["column1", "column2", "column3", "column4","column5"]
+        array = []
+        for idx, card in enumerate(self.cards):
+            array.append(card.getText())
+            if len(array) == 5:
+
+                x.add_row(array)
+                array = []
+
+            #print(idx,card.getText())
+
+            #x.add_row(['Yu Lin','Chris','Shanaya','Zu'])
+
+        print(x)
 
 test = Grid()
 test.display_grid()
