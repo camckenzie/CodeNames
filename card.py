@@ -2,7 +2,7 @@ class Card:
     
     """This is a card."""
 
-    def __init__(self, text: str, team: str = 'neutral') -> 'Card':
+    def __init__(self, text: str, team: str) -> 'Card':
         self._text = text
         self._team = team
 
