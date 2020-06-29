@@ -1,5 +1,5 @@
 from card import Card
-from move import Move
+#from move import Move
 from random import randint, choice
 from word import words
 from prettytable import PrettyTable
@@ -25,6 +25,7 @@ class Grid:
         self.initialize_grid()
         self.print_text()
         self.print_team()
+        self.print_click()
 
     def initialize_grid(self):
         for i in range(25):
@@ -69,6 +70,28 @@ class Grid:
                 t_array = []
 
         print(y)
+
+    def print_click(self):
+
+        z = PrettyTable()
+        z.field_names = ["column1", "column2", "column3", "column4","column5"]
+        c_array = []
+
+        for idx, card in enumerate(self.cards):
+            
+            if len(c_array) == 5:
+                z.add_row(c_array)
+                c_array = []
+
+            elif card.getClick() == 'N':
+                c_array.append(f'{card.getText()}  ({card.getTeam()})')
+
+            elif card.getClick() == 'Y':
+                c_array.append(card.getText())
+
+            #else:
+
+        print(z)    
 
 
 test = Grid()
