@@ -78,18 +78,16 @@ class Grid:
         c_array = []
 
         for idx, card in enumerate(self.cards):
-            
-            if len(c_array) == 5:
-                z.add_row(c_array)
-                c_array = []
 
-            elif card.getClick() == 'N':
+            if card.getClick() == 'N':
                 c_array.append(f'{card.getText()}  ({card.getTeam()})')
 
             elif card.getClick() == 'Y':
                 c_array.append(card.getText())
 
-            #else:
+            if len(c_array) == 5:
+                z.add_row(c_array)
+                c_array = []
 
         print(z)    
 
