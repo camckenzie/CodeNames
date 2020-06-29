@@ -23,7 +23,7 @@ class Grid:
         #self.player_count: Dict[str, int] = {'Red': 0, 'Blue': 0, 'Black': 0, 'Neutral': 0}
 
         self.initialize_grid()
-        self.print_text()
+        #self.print_text()
         self.print_team()
         self.print_click()
 
@@ -40,20 +40,20 @@ class Grid:
                 self.choices.remove(team)
 
     
-    def print_text(self):
+    # def print_text(self):
         
-        x = PrettyTable()
-        x.field_names = ["column1", "column2", "column3", "column4","column5"]
-        array = []
+    #     x = PrettyTable()
+    #     x.field_names = ["column1", "column2", "column3", "column4","column5"]
+    #     array = []
 
-        for idx, card in enumerate(self.cards):
-            array.append(card.getText()) #ADD THE CARD NUMBER HERE
+    #     for idx, card in enumerate(self.cards):
+    #         array.append(card.getText()) #ADD THE CARD NUMBER HERE
 
-            if len(array) == 5:
-                x.add_row(array)
-                array = []
+    #         if len(array) == 5:
+    #             x.add_row(array)
+    #             array = []
 
-        print(x)
+    #     print(x)
 
 
     def print_team(self):
@@ -79,10 +79,10 @@ class Grid:
 
         for idx, card in enumerate(self.cards):
 
-            if card.getClick() == 'N':
-                c_array.append(f'{card.getText()}  ({card.getTeam()})')
+            if card.getClick() == 'Y':
+                c_array.append(f'{card.getText()} ({card.getTeam()})')
 
-            elif card.getClick() == 'Y':
+            elif card.getClick() == 'N':
                 c_array.append(card.getText())
 
             if len(c_array) == 5:
