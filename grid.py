@@ -1,5 +1,5 @@
 from card import Card
-#from move import Move
+#from game import game
 from random import randint, choice
 from word import words
 from prettytable import PrettyTable
@@ -13,7 +13,8 @@ class Grid:
 
 
     def __init__(self):
-        self.cards = []
+        #self.cards = []
+        self.c_dict = {} #self.cards_dict[text] = Card
 
         self.choices = ['Red', 'Blue', 'Black', 'Neutral']
         self.choice_limit: Dict[str, int] = {'Red': 8, 'Blue': 7, 'Black': 1, 'Neutral': 9}
@@ -24,36 +25,40 @@ class Grid:
 
         self.initialize_grid()
         #self.print_text()
-        self.print_team()
-        self.print_click()
+        #self.print_team()
+        #self.print_click()
 
     def initialize_grid(self):
+
+
         for i in range(25):
+
             text = words.pop(randint(0, 25-i))
             team = choice(self.choices)
             new_card = Card(text, team)
 
             self.choice_count[team] += 1
-            self.cards.append(new_card)
+            self.c_dict[new_card.getText()] = Card(text, team)
 
             if self.choice_limit[team] == self.choice_count[team]:
                 self.choices.remove(team)
+        
 
     
-    # def print_text(self):
+    def print_text(self):
         
-    #     x = PrettyTable()
-    #     x.field_names = ["column1", "column2", "column3", "column4","column5"]
-    #     array = []
+        x = PrettyTable()
+        x.field_names = ["column1", "column2", "column3", "column4","column5"]
+        array = []
 
-    #     for idx, card in enumerate(self.cards):
-    #         array.append(card.getText()) #ADD THE CARD NUMBER HERE
+        for card_text in self.c_dict.keys():
+            array.append(card_text.getText()) #ADD THE CARD NUMBER HERE
 
-    #         if len(array) == 5:
-    #             x.add_row(array)
-    #             array = []
+            if len(array) == 5:
+                x.add_row(array)
+                array = []
 
-    #     print(x)
+        print(x)
 
 
     def print_team(self):
@@ -62,7 +67,7 @@ class Grid:
         y.field_names = ["column1", "column2", "column3", "column4","column5"]
         t_array = []
 
-        for idx, card in enumerate(self.cards):
+        for card in self.c_dict.values():
             t_array.append(card.getTeam())
 
             if len(t_array) == 5:
@@ -77,7 +82,7 @@ class Grid:
         z.field_names = ["column1", "column2", "column3", "column4","column5"]
         c_array = []
 
-        for idx, card in enumerate(self.cards):
+        for card in self.c_dict.values():
 
             if card.getClick() == 'Y':
                 c_array.append(f'{card.getText()} ({card.getTeam()})')
@@ -92,7 +97,7 @@ class Grid:
         print(z)    
 
 
-test = Grid()
+#test = Grid()
 #test.print_text()
 #test.print_team()
 
