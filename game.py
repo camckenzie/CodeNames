@@ -9,17 +9,39 @@ from typing import Dict
 class Game:
 
 
-    def __init__(self):
+    def __init__(self):  
         self.grid = Grid()
-        self.move('ramen')
-        self.grid.print_click()
-    
-    def move(self, move):
-        if move in self.grid.c_dict:
+        self.play_game() #Player turn
+        
+
+
+        #play game function - Loops
+
+    def play_game(self):
+
+        again = 'True'
+
+        while again:
+            self.grid.print_click()   #Print new Grid board
+            again = self.move()
+        
+        print('End Turn')
+
+    def move(self):
+
+        #Look for Input
+        
+        move = input("Player Input Word: ")
+
+        if move == 'Q':
+            return False
+        elif move in self.grid.c_dict:
             card = self.grid.c_dict[move]
             card.setClick('Y')
         else:
             print('ERROR')
+
+        return True
 
     #TODO: Set up the player inputs and loop them
     #Figure out how often and when we should be printing the grid (maybe a loop?)
