@@ -5,33 +5,47 @@ from word import words
 from prettytable import PrettyTable
 from typing import Dict
 
+#TODO: Figure out how to end the game
+#Figure out win conditions
+
 
 class Game:
 
 
     def __init__(self):  
         self.grid = Grid()
-        self.play_game() #Player turn
+        
+        play = True
+        while play:
+            self.play_game(play) #Player turn
         
 
 
         #play game function - Loops
 
-    def play_game(self):
+    def play_game(self, play: bool=True):
 
-        again = 'True'
+        p1 = 'True'
+        p2 = 'True'
 
-        while again:
+        print('PLAYER 1 TURN')
+        while p1:
             self.grid.print_click()   #Print new Grid board
-            again = self.move()
+            p1 = self.move()
+        print('Player 1 End Turn')
         
-        print('End Turn')
+        print('PLAYER 2 TURN')
+        while p2:
+            self.grid.print_click()   #Print new Grid board
+            p2 = self.move()
+        print('Player 2 End Turn')
+
 
     def move(self):
 
         #Look for Input
         
-        move = input("Player Input Word: ")
+        move = input("Select a word: ")
 
         if move == 'Q':
             return False
@@ -42,59 +56,3 @@ class Game:
             print(f"ERROR: '{move}' NOT FOUND IN BOARD")
 
         return True
-
-    #TODO: Set up the player inputs and loop them
-    #Figure out how often and when we should be printing the grid (maybe a loop?)
-    
-
-        
-
-
-
-    # """This is the player move."""
-
-    # def __init__(self, turn: int = 1):
-    #     self.p1_move()
-    #     #self.p2_move()
-
-    # def p1_move(self, move: str = input()):
-    #     self.move = input("PLAYER 1: Please select a card: ")
-    #     if self.move == 
-    #     return self.move
-
-#     def p2_move(self, move: str = input()):
-#         self.move = input("PLAYER 2 Please select a card: ")
-#         return self.move
-
-#     def p1_endturn(self):
-#         self._turn = 2
-#         return self.turn
-
-#     def p2_endturn(self):
-#         self._turn = 1
-#         return self.turn
-
-#     def checkcard(self, word:str)
-
-#         if word
-
-# def main():
-
-#     #While no team has gotten all their cards
-#     while(win == 0):
-
-#         if turn == 1:
-
-#             p1_move()
-
-#             p1_endturn()
-
-#         else 
-
-#             p2_move()
-            
-#             p2_endturn()
-
-
-
-test = Game()
