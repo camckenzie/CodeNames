@@ -7,17 +7,17 @@ from typing import Dict
 
 #TODO: Figure out how to end the game
 #Figure out win conditions
-
+# Scoring - Count for number of Red/Blue words that have been clicked 
 
 class Game:
 
 
     def __init__(self):  
         self.grid = Grid()
-        
-        play = True
-        while play:
-            self.play_game(play) #Player turn
+        self.score()
+        # play = True
+        # while play:
+        #     self.play_game(play) #Player turn
         
 
 
@@ -56,3 +56,28 @@ class Game:
             print(f"ERROR: '{move}' NOT FOUND IN BOARD")
 
         return True
+
+    def score(self):
+
+        #Calculates current score
+        self.choice_limit: Dict[str, int] = {'Red': 8, 'Blue': 7} #Final Score
+        self.choice_count: Dict[str, int] = {'Red': 0, 'Blue': 0} #Current Score
+        
+        # Count total number of Blue cards that are clicked
+        #self.cards_dict[text] = Card
+
+        blue_score = 0
+
+        for team in Grid.c_dict.values():
+
+            print(team)
+        # Count total number of Red cards that are clicked
+
+
+        # self.choice_count[team] += 1
+        # self.c_dict[new_card.getText()] = Card(text, team)
+
+        # if self.choice_limit[team] == self.choice_count[team]:
+        #     self.choices.remove(team)
+        
+
