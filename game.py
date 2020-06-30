@@ -39,7 +39,7 @@ class Game:
             card = self.grid.c_dict[move]
             card.setClick('Y')
         else:
-            print('ERROR')
+            print(f"ERROR: '{move}' NOT FOUND IN BOARD")
 
         return True
 
