@@ -3,7 +3,7 @@ from grid import Grid
 from random import randint, choice
 from word import words
 from prettytable import PrettyTable
-from typing import Dict
+from typing import Dict, List
 
 #TODO: Figure out how to end the game
 #Figure out win conditions
@@ -14,6 +14,7 @@ class Game:
 
     def __init__(self):  
         self.grid = Grid()
+        
         self.score()
         # play = True
         # while play:
@@ -52,6 +53,7 @@ class Game:
         elif move in self.grid.c_dict:
             card = self.grid.c_dict[move]
             card.setClick('Y')
+            #print(self.grid.c_dict)
         else:
             print(f"ERROR: '{move}' NOT FOUND IN BOARD")
 
@@ -64,13 +66,15 @@ class Game:
         self.choice_count: Dict[str, int] = {'Red': 0, 'Blue': 0} #Current Score
         
         # Count total number of Blue cards that are clicked
-        #self.cards_dict[text] = Card
+        #self.c_dict[text] = Card
 
         blue_score = 0
-
-        for team in Grid.c_dict.values():
-
-            print(team)
+        for team in self.grid.c_dict.values():
+            if team._team == 'Red' or team._team == 'Blue':
+                self.choice_count[team._team] +=1
+        
+        print(self.choice_count)
+        
         # Count total number of Red cards that are clicked
 
 
@@ -81,3 +85,4 @@ class Game:
         #     self.choices.remove(team)
         
 
+test = Game()
