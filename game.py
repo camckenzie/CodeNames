@@ -5,8 +5,9 @@ from word import words
 from prettytable import PrettyTable
 from typing import Dict, List
 
-#TODO: Figure out how to end the game
-#Figure out win conditions
+#TODO: 
+#Figure out win conditions, how to end the game
+#Remove duplicate code in p1/p2 move
 # Scoring - Count for number of Red/Blue words that have been clicked 
 
 class Game:
@@ -36,6 +37,10 @@ class Game:
             self.grid.print_click()   #Print new Grid board
             p1 = self.move()
             print(f'SCORE: {self.current_score}')
+
+            if self.current_score['Blue'] == self.grid.choice_count['Blue']:
+                 play = False
+                 return play 
         print('Player 1 End Turn')
         
         print('PLAYER 2 TURN')
@@ -43,8 +48,14 @@ class Game:
             self.grid.print_click()   #Print new Grid board
             p2 = self.move()
             print(f'SCORE: {self.current_score}')
+
+            if self.current_score['Red'] == self.grid.choice_count['Red']:
+                 play = False
+                 return play 
         print('Player 2 End Turn')
 
+        play = False
+        return play
 
     def move(self):
 
