@@ -25,7 +25,7 @@ class Grid:
 
         self.initialize_grid()
         #self.print_text()
-        #self.print_team()
+        self.print_team()
         #self.print_click()
 
     def initialize_grid(self):
